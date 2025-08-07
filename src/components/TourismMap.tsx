@@ -47,7 +47,7 @@ const spanishRegionsGeoJSON = {
     },
     {
       type: "Feature" as const,
-      properties: { region_id: "CAT", name: "Cataluña" },
+      properties: { region_id: "CAT", name: "Catalonia" },
       geometry: {
         type: "Polygon" as const,
         coordinates: [[
@@ -59,7 +59,7 @@ const spanishRegionsGeoJSON = {
     },
     {
       type: "Feature" as const,
-      properties: { region_id: "AND", name: "Andalucía" },
+      properties: { region_id: "AND", name: "Andalusia" },
       geometry: {
         type: "Polygon" as const,
         coordinates: [[
@@ -95,7 +95,7 @@ const spanishRegionsGeoJSON = {
     },
     {
       type: "Feature" as const,
-      properties: { region_id: "PVA", name: "País Vasco" },
+      properties: { region_id: "PVA", name: "Basque Country" },
       geometry: {
         type: "Polygon" as const,
         coordinates: [[
@@ -158,7 +158,7 @@ const TourismMap: React.FC = () => {
     layer.bindPopup(`
       <div style="padding: 12px;">
         <strong style="font-size: 14px;">${regionName}</strong><br/>
-        <span style="font-size: 12px; color: #666;">Pronóstico: ${forecastValue.toLocaleString()}</span>
+        <span style="font-size: 12px; color: #666;">Forecast: ${forecastValue.toLocaleString()}</span>
       </div>
     `);
 
@@ -229,7 +229,7 @@ const TourismMap: React.FC = () => {
     return (
       <Card className="absolute bottom-6 left-6 z-[1000] bg-card/95 backdrop-blur-sm border-map-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium">Pronóstico de Turismo</CardTitle>
+          <CardTitle className="text-sm font-medium">Tourism Forecast</CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
           <div className="space-y-2">
