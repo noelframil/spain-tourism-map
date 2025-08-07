@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { FeatureCollection, Feature } from 'geojson';
+import type * as L from 'leaflet';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface RegionProperties {
@@ -149,9 +150,7 @@ const TourismMap: React.FC = () => {
   };
 
   // Style feature function
-  const styleFeature = (feature?: Feature) => {
-    if (!feature) return {};
-    
+  const styleFeature = (feature: Feature) => {
     const regionId = (feature.properties as RegionProperties)?.region_id;
     const forecastItem = forecastData.july_2024.find(
       (item: ForecastItem) => item.region_id === regionId
@@ -170,8 +169,8 @@ const TourismMap: React.FC = () => {
     };
   };
 
-  // Interactive feature function
-  const onEachFeature = (feature: Feature, layer: any) => {
+  // Interactive feature function  
+  const onEachFeature = (feature: Feature, layer: L.Layer) => {
     const properties = feature.properties as RegionProperties;
     const regionId = properties?.region_id;
     const regionName = properties?.name;
@@ -182,30 +181,34 @@ const TourismMap: React.FC = () => {
     
     const forecastValue = forecastItem?.forecast_value || 0;
     
-    layer.bindPopup(`
-      <div class="p-3">
-        <strong class="text-lg">${regionName}</strong><br/>
-        <span class="text-sm text-muted-foreground">Pronóstico: ${forecastValue.toLocaleString()}</span>
-      </div>
-    `);
+    if ('bindPopup' in layer) {
+      layer.bindPopup(`
+        <div style="padding: 12px;">
+          <strong style="font-size: 14px;">${regionName}</strong><br/>
+          <span style="font-size: 12px; color: #666;">Pronóstico: ${forecastValue.toLocaleString()}</span>
+        </div>
+      `);
+    }
 
     // Add hover effects
-    layer.on({
-      mouseover: function (e: any) {
-        const layer = e.target;
-        layer.setStyle({
-          weight: 3,
-          color: '#666',
-          dashArray: '',
-          fillOpacity: 0.8
-        });
-      },
-      mouseout: function (e: any) {
-        const layer = e.target;
-        const style = styleFeature(feature);
-        layer.setStyle(style);
-      }
-    });
+    if ('on' in layer && 'setStyle' in layer) {
+      layer.on({
+        mouseover: function (e: any) {
+          const hoverLayer = e.target;
+          hoverLayer.setStyle({
+            weight: 3,
+            color: '#666',
+            dashArray: '',
+            fillOpacity: 0.8
+          });
+        },
+        mouseout: function (e: any) {
+          const hoverLayer = e.target;
+          const style = styleFeature(feature);
+          hoverLayer.setStyle(style);
+        }
+      });
+    }
   };
 
   // Legend component
