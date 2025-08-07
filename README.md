@@ -50,26 +50,16 @@ Accurate tourism forecasts are critical for dynamic pricing, resource allocation
 
 ```mermaid
 flowchart LR
-    subgraph A[Data Ingestion & Preprocessing]
-      A1[INE/IGE monthly data]
-      A2[Seasonal Kalman impute]
-      A3[Outlier winsorization]
-      A4[Exogenous variables]
-    end
-
-    subgraph B[Backend Modeling (Python)]
-      B1[SARIMAX–GARCH]
-      B2[Residual extraction]
-      B3[LSTM + Attention]
-      B4[Transformer benchmark]
-    end
-
-    subgraph C[Frontend Visualization (React / Node.js)]
-      C1[REST API consumption]
-      C2[React & React-Leaflet]
-      C3[Interactive choropleth]
-      C4[Deployed on Vercel]
-    end
-
-    A --> B --> C
-
+    A["Data Ingestion & Preprocessing"] --> B["Backend Modeling (Python)"] --> C["Frontend Visualization (React/Node.js)"]
+    A --> A1["INE/IGE monthly data"]
+    A --> A2["Seasonal Kalman imputation"]
+    A --> A3["Outlier winsorization"]
+    A --> A4["Exogenous variables"]
+    B --> B1["SARIMAX–GARCH"]
+    B --> B2["Residual extraction"]
+    B --> B3["LSTM + Attention"]
+    B --> B4["Transformer benchmark"]
+    C --> C1["REST API consumption"]
+    C --> C2["React & React-Leaflet"]
+    C --> C3["Interactive choropleth"]
+    C --> C4["Deployed on Vercel"]
