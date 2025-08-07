@@ -1,73 +1,61 @@
-# Welcome to your Lovable project
+# A Hybrid SARIMAX–LSTM Framework for Spatiotemporal Tourism Forecasting
 
-## Project info
+This repository contains the full implementation of “A Unified Framework for Spatiotemporal Tourism Analytics and Predictive Intelligence,” a project designed to bridge rigorous econometric modeling, deep learning, and interactive full-stack application development.
 
-**URL**: https://lovable.dev/projects/2c9bcb6d-7064-4039-9941-6756fe18ee8d
+---
 
-## How can I edit this code?
+## 1. Project Overview
 
-There are several ways of editing your application.
+This project presents an end-to-end computational pipeline for forecasting tourism demand in the Rías Baixas region. It combines:
 
-**Use Lovable**
+- **SARIMAX–GARCH** for trend, seasonality and volatility decomposition  
+- **LSTM with Bahdanau Attention** for modeling non-linear residuals  
+- **Transformer** variant for benchmarking  
+- **React/TypeScript + Leaflet** choropleth map demo of July 2024 accommodation density  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2c9bcb6d-7064-4039-9941-6756fe18ee8d) and start prompting.
+The entire workflow—from data ingestion to model validation and web deployment—is containerized and fully reproducible.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 2. Motivation & Academic Context
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Accurate tourism forecasts are critical for dynamic pricing, resource allocation, and strategic marketing. Purely statistical models capture linear structure but miss complex patterns; pure neural nets capture non-linearity but ignore volatility. As a double-degree student in International Business & Data Science (ESIC) and Computer Engineering (UNIR), I designed this hybrid approach to:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Demonstrate research initiative and methodological rigor  
+2. Achieve superior forecast accuracy (≈15 % lower sMAPE vs. baseline)  
+3. Showcase full-stack implementation skills, from Python modeling to interactive web apps  
+4. Position myself for elite Master’s programs (ETH Zürich, EPFL) by providing a concrete, citable deliverable  
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 3. Core Features
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- **Hybrid Modeling Pipeline**  
+  - SARIMAX–GARCH to forecast trend, seasonality and conditional variance  
+  - LSTM + Attention to learn complex residual dynamics  
 
-# Step 3: Install the necessary dependencies.
-npm i
+- **Benchmarking with Transformers**  
+  - Compare performance against a self-attention based architecture  
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- **Interactive Visualization**  
+  - React + Leaflet choropleth map for spatial forecasts  
+  - Live demo hosted on GitHub Pages or similar  
 
-**Edit a file directly in GitHub**
+- **Reproducible Workflow**  
+  - Jupyter notebooks for each stage (preprocessing, modeling, evaluation)  
+  - Dockerfile & Conda environment for one-click setup  
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 4. Technical Architecture
++–––––––––––––+      +–––––––––––––+      +—————————+
+|  Data Ingestion &        |      |   Backend Modeling       |      |   Frontend Visualization  |
+|  Preprocessing           |—–>|      (Python)            |—–>|    (React / Node.js)      |
++–––––––––––––+      +–––––––––––––+      +—————————+
+| - INE/IGE monthly data   |      | - SARIMAX–GARCH          |      | - REST API consumption    |
+| - Seasonal Kalman impute |      | - Residual extraction    |      | - React & React-Leaflet   |
+| - Outlier winsorization  |      | - LSTM + Attention       |      | - Interactive choropleth  |
+| - Exogenous variables    |      | - Transformer benchmark  |      | - Deployed on Vercel      |
++–––––––––––––+      +–––––––––––––+      +—————————+
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/2c9bcb6d-7064-4039-9941-6756fe18ee8d) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
