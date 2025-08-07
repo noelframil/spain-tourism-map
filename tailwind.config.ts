@@ -61,7 +61,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				'tourism-low': 'hsl(var(--tourism-low))',
+				'tourism-medium-low': 'hsl(var(--tourism-medium-low))',
+				'tourism-medium': 'hsl(var(--tourism-medium))',
+				'tourism-medium-high': 'hsl(var(--tourism-medium-high))',
+				'tourism-high': 'hsl(var(--tourism-high))',
+				'tourism-very-high': 'hsl(var(--tourism-very-high))',
+				'map-background': 'hsl(var(--map-background))',
+				'map-border': 'hsl(var(--map-border))',
+				'map-popup': 'hsl(var(--map-popup))',
+				'map-shadow': 'hsl(var(--map-shadow))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

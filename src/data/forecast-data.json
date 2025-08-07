@@ -1,0 +1,10 @@
+{
+  "july_2024": [
+    { "region_id": "GAL", "forecast_value": 18500 },
+    { "region_id": "CAT", "forecast_value": 45200 },
+    { "region_id": "AND", "forecast_value": 51300 },
+    { "region_id": "MAD", "forecast_value": 24000 },
+    { "region_id": "VAL", "forecast_value": 32800 },
+    { "region_id": "PVA", "forecast_value": 16200 }
+  ]
+}
