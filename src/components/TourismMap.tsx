@@ -16,8 +16,8 @@ interface ForecastItem {
   forecast_value: number;
 }
 
-// Forecast data
-const forecastData = {
+// Tourism forecast data for July 2024
+const tourismForecastData = {
   july_2024: [
     { region_id: "GAL", forecast_value: 18500 },
     { region_id: "CAT", forecast_value: 45200 },
@@ -28,8 +28,8 @@ const forecastData = {
   ]
 };
 
-// GeoJSON data with Spanish regions
-const regionsGeoJSON = {
+// Spanish regions GeoJSON data
+const spanishRegionsGeoJSON = {
   type: "FeatureCollection" as const,
   features: [
     {
@@ -112,8 +112,8 @@ const TourismMap: React.FC = () => {
   const mapInstance = useRef<L.Map | null>(null);
   const geoJsonLayerRef = useRef<L.GeoJSON | null>(null);
 
-  // Color function based on forecast values
-  const getColor = (value: number): string => {
+  // Get color based on tourism forecast value
+  const getColorForValue = (value: number): string => {
     if (value > 50000) return '#800026';
     if (value > 40000) return '#BD0026';
     if (value > 30000) return '#E31A1C';
@@ -122,15 +122,15 @@ const TourismMap: React.FC = () => {
     return '#FFEDA0';
   };
 
-  // Style function for GeoJSON features
-  const styleFeature = (feature: any) => {
+  // Style function for map regions
+  const getRegionStyle = (feature: any) => {
     const regionId = feature.properties?.region_id;
-    const forecastItem = forecastData.july_2024.find(
+    const forecastItem = tourismForecastData.july_2024.find(
       (item: ForecastItem) => item.region_id === regionId
     );
     
     const forecastValue = forecastItem?.forecast_value || 0;
-    const fillColor = getColor(forecastValue);
+    const fillColor = getColorForValue(forecastValue);
 
     return {
       fillColor,
@@ -142,19 +142,19 @@ const TourismMap: React.FC = () => {
     };
   };
 
-  // Event handlers for features
-  const onEachFeature = (feature: any, layer: L.Layer) => {
+  // Handle region interactions
+  const handleRegionFeature = (feature: any, layer: L.Layer) => {
     const properties = feature.properties;
     const regionId = properties?.region_id;
     const regionName = properties?.name;
     
-    const forecastItem = forecastData.july_2024.find(
+    const forecastItem = tourismForecastData.july_2024.find(
       (item: ForecastItem) => item.region_id === regionId
     );
     
     const forecastValue = forecastItem?.forecast_value || 0;
     
-    // Bind popup
+    // Create popup content
     layer.bindPopup(`
       <div style="padding: 12px;">
         <strong style="font-size: 14px;">${regionName}</strong><br/>
@@ -162,11 +162,11 @@ const TourismMap: React.FC = () => {
       </div>
     `);
 
-    // Add hover effects
+    // Add interactive effects
     layer.on({
       mouseover: function (e) {
-        const layer = e.target;
-        layer.setStyle({
+        const targetLayer = e.target;
+        targetLayer.setStyle({
           weight: 3,
           color: '#666',
           dashArray: '',
@@ -182,31 +182,31 @@ const TourismMap: React.FC = () => {
   useEffect(() => {
     if (!mapRef.current || mapInstance.current) return;
 
-    console.log('Initializing map...');
+    console.log('🗺️ Initializing tourism map...');
 
-    // Initialize map
+    // Create map instance
     mapInstance.current = L.map(mapRef.current, {
       center: [40.416775, -3.703790],
       zoom: 6,
       scrollWheelZoom: true
     });
 
-    // Add tile layer
+    // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mapInstance.current);
 
-    console.log('Map initialized, adding GeoJSON...');
+    console.log('✅ Map tiles loaded, adding regions...');
 
-    // Add GeoJSON layer
-    geoJsonLayerRef.current = L.geoJSON(regionsGeoJSON, {
-      style: styleFeature,
-      onEachFeature: onEachFeature
+    // Add Spanish regions with tourism data
+    geoJsonLayerRef.current = L.geoJSON(spanishRegionsGeoJSON, {
+      style: getRegionStyle,
+      onEachFeature: handleRegionFeature
     }).addTo(mapInstance.current);
 
-    console.log('GeoJSON added successfully');
+    console.log('✅ Tourism regions loaded successfully');
 
-    // Cleanup function
+    // Cleanup on unmount
     return () => {
       if (mapInstance.current) {
         mapInstance.current.remove();
@@ -215,9 +215,9 @@ const TourismMap: React.FC = () => {
     };
   }, []);
 
-  // Legend component
-  const Legend = () => {
-    const legendItems = [
+  // Map legend component
+  const MapLegend = () => {
+    const legendData = [
       { color: '#800026', label: '> 50,000', min: 50000 },
       { color: '#BD0026', label: '40,000 - 50,000', min: 40000 },
       { color: '#E31A1C', label: '30,000 - 40,000', min: 30000 },
@@ -233,7 +233,7 @@ const TourismMap: React.FC = () => {
         </CardHeader>
         <CardContent className="pt-0">
           <div className="space-y-2">
-            {legendItems.map((item, index) => (
+            {legendData.map((item, index) => (
               <div key={index} className="flex items-center gap-2">
                 <div 
                   className="w-4 h-4 rounded border border-map-border"
@@ -255,7 +255,7 @@ const TourismMap: React.FC = () => {
         style={{ height: '100%', width: '100%' }}
         className="rounded-lg"
       />
-      <Legend />
+      <MapLegend />
     </div>
   );
 };
