@@ -46,16 +46,30 @@ Accurate tourism forecasts are critical for dynamic pricing, resource allocation
   - Dockerfile & Conda environment for one-click setup  
 
 ---
-
 ## 4. Technical Architecture
-+–––––––––––––+      +–––––––––––––+      +—————————+
-|  Data Ingestion &        |      |   Backend Modeling       |      |   Frontend Visualization  |
-|  Preprocessing           |—–>|      (Python)            |—–>|    (React / Node.js)      |
-+–––––––––––––+      +–––––––––––––+      +—————————+
-| - INE/IGE monthly data   |      | - SARIMAX–GARCH          |      | - REST API consumption    |
-| - Seasonal Kalman impute |      | - Residual extraction    |      | - React & React-Leaflet   |
-| - Outlier winsorization  |      | - LSTM + Attention       |      | - Interactive choropleth  |
-| - Exogenous variables    |      | - Transformer benchmark  |      | - Deployed on Vercel      |
-+–––––––––––––+      +–––––––––––––+      +—————————+
----
+
+```mermaid
+flowchart LR
+    subgraph A[Data Ingestion & Preprocessing]
+      A1[INE/IGE monthly data]
+      A2[Seasonal Kalman impute]
+      A3[Outlier winsorization]
+      A4[Exogenous variables]
+    end
+
+    subgraph B[Backend Modeling (Python)]
+      B1[SARIMAX–GARCH]
+      B2[Residual extraction]
+      B3[LSTM + Attention]
+      B4[Transformer benchmark]
+    end
+
+    subgraph C[Frontend Visualization (React / Node.js)]
+      C1[REST API consumption]
+      C2[React & React-Leaflet]
+      C3[Interactive choropleth]
+      C4[Deployed on Vercel]
+    end
+
+    A --> B --> C
 
