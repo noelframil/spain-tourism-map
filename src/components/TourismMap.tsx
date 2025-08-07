@@ -244,26 +244,36 @@ const TourismMap: React.FC = () => {
     );
   };
 
+  console.log('TourismMap component rendering...');
 
   return (
     <div className="relative h-[90vh] w-full bg-map-background border border-map-border rounded-lg overflow-hidden shadow-lg">
-      <MapContainer
-        center={[40.416775, -3.703790]}
-        zoom={6}
-        style={{ height: '100%', width: '100%' }}
-        className="rounded-lg"
-        scrollWheelZoom={true}
-      >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-        <GeoJSON
-          data={regionsGeoJSON}
-          style={styleFeature}
-          onEachFeature={onEachFeature}
-        />
-      </MapContainer>
+      <div style={{ height: '100%', width: '100%' }}>
+        <MapContainer
+          center={[40.416775, -3.703790]}
+          zoom={6}
+          style={{ height: '100%', width: '100%', minHeight: '500px' }}
+          className="rounded-lg"
+          scrollWheelZoom={true}
+          whenReady={() => {
+            console.log('Map ready!');
+          }}
+        >
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            eventHandlers={{
+              load: () => console.log('TileLayer loaded successfully'),
+              tileerror: (error: any) => console.error('TileLayer error:', error),
+            }}
+          />
+          <GeoJSON
+            data={regionsGeoJSON}
+            style={styleFeature}
+            onEachFeature={onEachFeature}
+          />
+        </MapContainer>
+      </div>
       <Legend />
     </div>
   );
