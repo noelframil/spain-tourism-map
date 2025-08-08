@@ -67,7 +67,7 @@ flowchart LR
 ## Paper
 
 **A Mini Hybrid SARIMAX–LSTM Framework for Spatiotemporal Tourism Forecasting**  
-📄 PDF: https://noelframil.github.io/spain-tourism-map/paper.pdf  
+📄 PDF: https://noelframil.github.io/spain-tourism-map/A%20Mini%20Hybrid%20SARIMAX%E2%80%93LSTM%20Framework%20for%20Spatiotemporal%20Tourism%20Forecasting.pdf  
 🔖 DOI: _to be added (Zenodo)_
 
 ### Cite this work
