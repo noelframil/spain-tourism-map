@@ -72,12 +72,13 @@ flowchart LR
 🔖 DOI: _to be added (Zenodo)_
 
 ### Cite this work
+Iglesias, N. F. (2025). *A Mini Hybrid SARIMAX–LSTM Framework for Spatiotemporal Tourism Forecasting*. Zenodo. https://doi.org/10.5281/zenodo.16776978
+
 ```bibtex
 @misc{iglesias2025mini-hybrid-sarimax-lstm,
-  title        = {A Mini Hybrid {SARIMAX}--{LSTM} Framework for Spatiotemporal Tourism Forecasting},
-  author       = {Iglesias, Noel Framil},
-  year         = {2025},
-  howpublished = {\url{https://noelframil.github.io/spain-tourism-map/paper.pdf}},
-  note         = {DOI to be added (Zenodo)}
+  title  = {A Mini Hybrid SARIMAX--LSTM Framework for Spatiotemporal Tourism Forecasting},
+  author = {Iglesias, Noel Framil},
+  year   = {2025},
+  doi    = {10.5281/zenodo.16776978},
+  url    = {https://doi.org/10.5281/zenodo.16776978}
 }
-```
