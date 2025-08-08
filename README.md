@@ -63,6 +63,7 @@ flowchart LR
     C --> C2["React & React-Leaflet"]
     C --> C3["Interactive choropleth"]
     C --> C4["Deployed on Vercel"]
+```
 ## Paper
 
 **A Mini Hybrid SARIMAX–LSTM Framework for Spatiotemporal Tourism Forecasting**  
@@ -70,8 +71,6 @@ flowchart LR
 🔖 DOI: _to be added (Zenodo)_
 
 ### Cite this work
-Iglesias, N. F. (2025). *A Mini Hybrid SARIMAX–LSTM Framework for Spatiotemporal Tourism Forecasting*. Zenodo. DOI: _to be added_.
-
 ```bibtex
 @misc{iglesias2025mini-hybrid-sarimax-lstm,
   title        = {A Mini Hybrid {SARIMAX}--{LSTM} Framework for Spatiotemporal Tourism Forecasting},
@@ -80,3 +79,4 @@ Iglesias, N. F. (2025). *A Mini Hybrid SARIMAX–LSTM Framework for Spatiotempor
   howpublished = {\url{https://noelframil.github.io/spain-tourism-map/paper.pdf}},
   note         = {DOI to be added (Zenodo)}
 }
+```
