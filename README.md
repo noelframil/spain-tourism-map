@@ -3,7 +3,11 @@
 This repository contains the full implementation of “A Unified Framework for Spatiotemporal Tourism Analytics and Predictive Intelligence,” a project designed to bridge rigorous econometric modeling, deep learning, and interactive full-stack application development.
 
 ---
+## 🌐 Live Demo — Choropleth Map of Spain
+**React/TypeScript + Leaflet** choropleth demonstrating **accommodation density (example: July 2024)** across Spain.
 
+➡️ **Try it here:** https://noelframil.github.io/spain-tourism-map/
+---
 ## 1. Project Overview
 
 This project presents an end-to-end computational pipeline for forecasting tourism demand in the Rías Baixas region. It combines:
